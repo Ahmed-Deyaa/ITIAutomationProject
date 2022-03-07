@@ -1,4 +1,4 @@
-package testset;
+package testSet;
 
 import com.google.common.io.Files;
 import org.openqa.selenium.OutputType;
@@ -16,7 +16,7 @@ import utilities.WindowManager;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
+import java.text.DecimalFormat;
 
 public class TestSet {
 
@@ -28,6 +28,7 @@ public class TestSet {
         System.setProperty("webdriver.chrome.driver","resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://www.demoblaze.com/");
+        driver.manage().window().maximize();
         homePage =new HomePage(driver);
     }
     @BeforeMethod
@@ -65,4 +66,13 @@ public class TestSet {
     }
 
 
+    /*public static void  main(String []args){
+        String quantity="2";
+        double listPrice = 18.5;
+        int quantityInt = Integer.parseInt(quantity);
+        double totalPrice = quantityInt*listPrice;
+        String totalString = Double.toString(totalPrice);
+        String assertValue= "$"+totalString;
+        System.out.println(assertValue);
+    }*/
 }

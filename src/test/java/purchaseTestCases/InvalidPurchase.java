@@ -1,8 +1,8 @@
-package purchase;
+package purchaseTestCases;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import testset.TestSet;
+import testSet.TestSet;
 
 public class InvalidPurchase extends TestSet {
 
@@ -14,7 +14,7 @@ public class InvalidPurchase extends TestSet {
     String validPurchaseMessage="Thank you for your purchase!";
 
     @Test
-    public void testInvalidLogin(){
+    public void testInvalidPurchase(){
 
         homePage.login(username,password);
         homePage.browsePhones();
@@ -25,7 +25,7 @@ public class InvalidPurchase extends TestSet {
         cart.clickOnPurchase();
         String text = cart.getAlertText();
         Assert.assertEquals(text,invalidPurchaseMessage,"Order did not go through");
-        System.out.println("Purchase did not happen, Test Case 'testInvalidLogin' passed");
+        //System.out.println("Purchase did not happen, Test Case 'testInvalidLogin' passed");
     }
 
 }

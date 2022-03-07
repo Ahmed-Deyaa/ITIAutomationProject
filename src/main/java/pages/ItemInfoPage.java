@@ -22,8 +22,7 @@ public class ItemInfoPage {
     }
 
     public String getAlertText(){
-        return driver.switchTo().alert().getText();
-    }
+        return driver.switchTo().alert().getText();}
 
     public void ignoreAlert(){
         Actions actions = new Actions(driver);

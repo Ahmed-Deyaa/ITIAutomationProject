@@ -1,8 +1,8 @@
-package purchase;
+package purchaseTestCases;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import testset.TestSet;
+import testSet.TestSet;
 
 public class ValidPurchase extends TestSet {
 
@@ -29,7 +29,7 @@ public class ValidPurchase extends TestSet {
         String text = cart.validateSuccessfulPurchase();
         cart.finalisePurchase();
         Assert.assertEquals(text,validPurchaseMessage,"Purchase was not finalised");
-        System.out.println("Purchase confirmed, Test Case 'testValidLogin' passed");
+        //System.out.println("Purchase confirmed, Test Case 'testValidLogin' passed");
 
     }
 

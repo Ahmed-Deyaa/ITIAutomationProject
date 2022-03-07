@@ -3,17 +3,24 @@ package pages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HomePage {
 
     private WebDriver driver;
     private By loginButtonHomePage = By.id("login2");
+    private By logoutButton = By.id("logout2");
     private By loginPopUpIndicator = By.cssSelector("div[id='logInModal'] div[class='modal-body']");
     private By usernameField = By.id("loginusername");
     private By passwordField = By.id("loginpassword");
     private By loginButtonSubmit = By.cssSelector("button[onclick='logIn()']");
+    private By cancelButtonSubmit = By.xpath("//div[@id='logInModal']//button[@class='btn btn-secondary']");
+    private By nameOfUser = By.id("nameofuser");
     private By phonesButton = By.xpath("//a[@onclick=\"byCat('phone')\"]");
     private By labtopsButton = By.xpath("//a[@onclick=\"byCat('notebook')\"]");
     private By monitorsButton = By.xpath("//a[@onclick=\"byCat('monitor')\"]");
@@ -84,4 +91,32 @@ public class HomePage {
         driver.findElement(purchaseItem).click();
         return new ItemInfoPage(driver);
     }
+
+    public String getWelcomeUserMessage(){
+        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver d) {
+                return d.findElement(nameOfUser).getText().length() != 0;
+            }
+        });
+        return driver.findElement(nameOfUser).getText();
+    }
+
+    public String getInvalidLoginMessage(){
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.alertIsPresent());
+        String text = driver.switchTo().alert().getText();
+        driver.switchTo().alert().accept();
+        return text;
+    }
+
+    public void clickOnCancel(){
+        driver.findElement(cancelButtonSubmit).click();
+    }
+
+    public void clickOnLogout(){
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.elementToBeClickable(logoutButton));
+        driver.findElement(logoutButton).click();
+    }
+
 }
